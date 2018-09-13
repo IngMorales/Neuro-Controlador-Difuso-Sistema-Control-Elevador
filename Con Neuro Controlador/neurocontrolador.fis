@@ -1,0 +1,39 @@
+[System]
+Name='neurocontrolador'
+Type='sugeno'
+Version=2.0
+NumInputs=1
+NumOutputs=1
+NumRules=5
+AndMethod='prod'
+OrMethod='probor'
+ImpMethod='prod'
+AggMethod='sum'
+DefuzzMethod='wtaver'
+
+[Input1]
+Name='error'
+Range=[-5 5]
+NumMFs=5
+MF1='muy_lento':'trapmf',[-7 -6 -3.9977555433182 -2.98972423169016]
+MF2='lento':'trapmf',[-3.99657000844913 -2.99774987209667 -1.99870241346301 -0.994051080377823]
+MF3='salida-entrada':'trapmf',[-1.9982750721607 -0.998699635188911 1.00008253807554 2.0014199972332]
+MF4='acelerado':'trapmf',[0.999394257672228 2.00008241902562 3.00182542591198 4.01217194134572]
+MF5='muy_acelerado':'trapmf',[3.00228829151333 4.00183433840936 6 7]
+
+[Output1]
+Name='scontrol'
+Range=[0 5]
+NumMFs=5
+MF1='disminuir_mas':'constant',[1.0420136260789]
+MF2='disminuir':'constant',[1.44210940301769]
+MF3='mantener':'constant',[1.57883760236265]
+MF4='aumentar':'constant',[2.04354644863724]
+MF5='aumentar_mas':'constant',[3.00773563881703]
+
+[Rules]
+1, 5 (1) : 1
+2, 4 (1) : 1
+3, 3 (1) : 1
+4, 2 (1) : 1
+5, 1 (1) : 1
